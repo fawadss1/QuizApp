@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Welcome{% endblock title %}
+
+{% block body %}
+<marquee behavior="alternate" direction="left">
+    <h2 class="text-danger"><b>Dear {{ request.user|title }} Welcome To Quiz App</b></h2>
+</marquee>
+<div class="mt-5">
+    <a class="btn btn-success" href="{% url 'Quiz' %}" role="button">Start Quiz</a>
+</div>
+{% endblock %}

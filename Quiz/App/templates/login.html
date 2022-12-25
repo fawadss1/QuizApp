@@ -1,0 +1,141 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'bootstrap-5.1.3-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #262626;
+            height: 100vh;
+            font-family: 'Times New Roman', Times, serif;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden
+        }
+
+        @media screen and (max-width: 600px) {
+            body {
+                background-size: cover;
+            }
+        }
+
+        #particles-js {
+            height: 100%
+        }
+
+        .loginBox {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            min-height: 200px;
+            background: #000000;
+            border-radius: 10px;
+            padding: 40px;
+            box-sizing: border-box
+        }
+
+        .user {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        h3 {
+            margin: 0;
+            padding: 0 0 20px;
+            color: #f3edf8;
+            text-align: center
+        }
+
+        .loginBox input {
+            width: 100%;
+            margin-bottom: 20px
+        }
+
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .loginBox input[type="text"],
+        .loginBox input[type="password"] {
+            border: none;
+            border-bottom: 2px solid #262626;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            background: transparent;
+            font-size: 16px;
+            padding-left: 20px;
+            box-sizing: border-box
+        }
+
+        .loginBox input[type="text"]:hover,
+        .loginBox input[type="password"]:hover {
+            color: #42F3FA;
+            border: 1px solid #42F3FA;
+            box-shadow: 0 0 5px rgba(0, 255, 0, .3), 0 0 10px rgba(0, 255, 0, .2), 0 0 15px rgba(0, 255, 0, .1), 0 2px 0 black
+        }
+
+        .loginBox input[type="text"]:focus,
+        .loginBox input[type="password"]:focus {
+            border-bottom: 2px solid #42F3FA
+        }
+
+        .inputBox {
+            position: relative
+        }
+
+        .inputBox span {
+            position: absolute;
+            top: 10px;
+            color: #262626
+        }
+
+        .loginBox input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            font-size: 16px;
+            background: #59238F;
+            color: #fff;
+            border-radius: 20px;
+            cursor: pointer
+        }
+
+        p {
+            color: #00ffff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="loginBox">
+    {% if messages %}
+        {% for m in messages %}
+            <p class="text-{{ m.tags }}"><b>{{ m }}</b></p>
+        {% endfor %}
+    {% endif %}
+    <img class="user" src="{% static 'Images/login_Img.png' %}" height="100px" width="100px" alt="Login_Img">
+    <h3>Sign in here</h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="inputBox">
+            <input id="Username" type="text" name="Username" placeholder="Username" required>
+            <input id="Pass" type="password" name="Pass" placeholder="Password" required>
+        </div>
+        <input type="submit" value="Login">
+    </form>
+    <p>&copy; 2022. Developed By Fawad</p>
+</div>
+<script src={% static "/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js" %}></script>
+</body>
+</html>

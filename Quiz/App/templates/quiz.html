@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}Quiz{% endblock title %}
+
+{% block body %}
+{% if Qs %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+        {% for i in Qs %}
+        <div class="col-md-12">
+            <h5><b>Q{{forloop.counter}}. {{i.Question |title}}</b></h5>
+        </div>
+        {% if i.A %}
+        <div class="col-md-6 mt-1 mb-4">
+            <div class="form-check">
+                <input class="form-check-input anss" type="radio" name="Ans{{i.id}}" id="a{{i.id}}" value="{{i.A}}"
+                    required>
+                <label class="form-check-label" for="a{{i.id}}">
+                    <b>A.</b> {{i.A |title}}
+                </label>
+            </div>
+        </div>
+        {% endif %}
+        {% if i.B %}
+        <div class="col-md-6 mt-1 mb-4">
+            <div class="form-check">
+                <input class="form-check-input anss" type="radio" name="Ans{{i.id}}" id="b{{i.id}}" value="{{i.B}}"
+                    required>
+                <label class="form-check-label" for="b{{i.id}}">
+                    <b>B.</b> {{i.B |title}}
+                </label>
+            </div>
+        </div>
+        {% endif %}
+        {% if i.C %}
+        <div class="col-md-6 mt-1 mb-4">
+            <div class="form-check">
+                <input class="form-check-input anss" type="radio" name="Ans{{i.id}}" id="c{{i.id}}" value="{{i.C}}"
+                    required>
+                <label class="form-check-label" for="c{{i.id}}">
+                    <b>C.</b> {{i.C |title}}
+                </label>
+            </div>
+        </div>
+        {% endif %}
+        {% if i.D %}
+        <div class="col-md-6 mt-1 mb-4">
+            <div class="form-check">
+                <input class="form-check-input anss" type="radio" name="Ans{{i.id}}" id="d{{i.id}}" value="{{i.D}}"
+                    required>
+                <label class="form-check-label" for="d{{i.id}}">
+                    <b>D.</b> {{i.D |title}}
+                </label>
+            </div>
+        </div>
+        {% endif %}
+        <hr class="mt-2 text-danger">
+        {% endfor %}
+    </div>
+    <div class="container">
+        <button class="btn btn-success" type="submit" id="submitAns">Submit Answers</button>
+    </div>
+</form>
+<!-- <script>
+    $('#submitAns').click(function () {
+        ans = $('.anss').val();
+        csrf = $('[name=csrfmiddlewaretoken]').val();
+        data = { 'Ans{{i.id}}': ans, csrfmiddlewaretoken: csrf }
+        $.ajax({
+            method: "POST",
+            url: "{% url 'Quiz' %}",
+            data: data,
+            success: function (response) {
+            }
+        });
+    });
+</script> -->
+
+{% else %}
+<h3 class="text-center">Sorry You Have Not Assign Any Quiz Try Agian Latter</h3>
+{% endif %}
+{% endblock %}
